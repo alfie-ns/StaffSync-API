@@ -7,7 +7,12 @@ cd "$(dirname "$0")/.." || { echo "Failed to change directory to project root"; 
 # Check if the virtual environment exists
 if [ ! -d "venv" ]; then
     echo "Virtual environment 'venv' not found. Create it with:"
-    echo "    python3 -m venv venv"
+    python3 -m venv venv
+    source venv/bin/activate
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
+    python3 manage.py migrate
+    python3 manage.py runserver
     exit 1
 fi
 
