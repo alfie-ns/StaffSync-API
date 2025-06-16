@@ -33,8 +33,11 @@ def get_employee(request, id):
 def add_employee(request):
     serializer = EmployeeSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
-        return Response({'message': 'Employee added successfully'}, status=status.HTTP_201_CREATED)
+        employee = serializer.save()
+        return Response({
+            'message': 'Employee added successfully',
+            'id': employee.id  # Add this line
+        }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])

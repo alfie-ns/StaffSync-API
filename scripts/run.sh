@@ -38,4 +38,4 @@ echo "Starting Django development server..."
 ls
 cd API
 ls
-python3 manage.py runserver || { echo "Failed to start Django development server"; exit 1; }
+python3 manage.py runserver 0.0.0.0:8000 || { echo "Failed to start Django development server"; exit 1; }
